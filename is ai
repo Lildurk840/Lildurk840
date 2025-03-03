@@ -1,0 +1,36 @@
+from chatterbot import ChatBot
+from chatterbot.trainers import ListTrainer
+
+# Create a ChatBot instance
+chatbot = ChatBot('MyChatBot')
+
+# Create a trainer (using ListTrainer for simple conversational lists)
+trainer = ListTrainer(chatbot)
+
+# Train the chatbot with sample conversations
+trainer.train([
+    "Hi",
+    "Hello!",
+    "How are you?",
+    "I'm doing well, thank you!",
+    "What is your name?",
+    "I am MyChatBot.",
+    "Tell me a joke.",
+    "Why don't scientists trust atoms? Because they make up everything!",
+    "Goodbye",
+    "See you later!"
+])
+
+# Function to get chatbot's response
+def get_response(user_input):
+    return chatbot.get_response(user_input)
+
+# Example interaction loop (command-line based)
+print("Chat with MyChatBot (type 'exit' to quit):")
+while True:
+    user_input = input("You: ")
+    if user_input.lower() == 'exit':
+        break
+    response = get_response(user_input)
+    print("ChatBot:", response)
+
